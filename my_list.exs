@@ -21,4 +21,8 @@ defmodule MyList do
   defp _max([], max), do: max
   defp _max([head | tail], max) when head > max, do: _max(tail, head)
   defp _max([head | tail], max) when head < max, do: _max(tail, max)
+
+  def caesar([], _n), do: []
+  def caesar([head | tail], n) when head + n <= ?z, do: [head + n | caesar(tail, n)]
+  def caesar([head | tail], n), do: [head + n - 26 | caesar(tail, n)]
 end
