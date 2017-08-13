@@ -11,12 +11,6 @@ defmodule MyList do
     [func.(head) | map(tail, func)]
   end
 
-  # def mapsum(list, func), do: _mapsum(list, func, 0)
-  # defp _mapsum([], _func, sum), do: sum
-  # defp _mapsum([head | tail], func, sum) do
-  #   _mapsum(tail, func, sum + func.(head))
-  # end
-
   def mapsum([], _func), do: 0
   def mapsum([head | tail], func), do: func.(head) + mapsum(tail, func)
 
@@ -26,4 +20,8 @@ defmodule MyList do
   def caesar([], _n), do: []
   def caesar([head | tail], n) when head + n <= ?z, do: [head + n | caesar(tail, n)]
   def caesar([head | tail], n), do: [head + n - 26 | caesar(tail, n)]
+
+  def span(x, x), do: [x]
+  def span(from, to) when from > to, do: [from | span(from - 1, to)]
+  def span(from, to), do: [from | span(from + 1, to)]
 end
